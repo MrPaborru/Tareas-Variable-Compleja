@@ -1,0 +1,73 @@
+\setcounter{eje}{14}
+\begin{ejer}
+Suponga que $f$ es una función continua no nula en $\ubar{\mathbb{D}}$ y que es holomorfa en $\mathbb{D}$. Pruebe que si
+\[ |z| = 1 \implies|f(z)| = 1 \]
+entonces $f$ es constante.\par\noindent
+[Sugerencia: Extienda $f$ a todo $\mathbb{C}$ mediante $f(z) = {1}/{\ubar{f(1/\ubar{z})}}$ con $|z| > 1$, y argumente como en el principio de reflexión de Schwarz.]
+\end{ejer}
+\begin{sol}
+\emph{Extendamos $f$ al plano complejo}:\\
+Definimos $g \colon \mathbb{C}\setminus \mathbb{D} \to \mathbb{C}$ tal que
+\[
+g(z) \coloneq \ubar{f(\nicefrac{1}{\ubar{z}})}^{-1}
+\]
+Esta función está bien definida gracias a que $f$ no se anula; además, es continua por ser composición de funciones continuas. Para ver que es holomorfa en $\mathbb{C}\setminus\ubar{\mathbb{D}}$, notemos primero que la función $z \mapsto\ubar{f(\ubar{z})}$ es holomorfa en $\ubar{\mathbb{D}}$: como $f$ tiene una serie de Taylor $f(z) = \sum a_nz^n$ en $\mathbb{D}$, basta notar que $\ubar{f(\ubar{z})} = \sum \ubar{a_n}z^n$ también para $z\en\mathbb{D}$, por lo cual $\ubar{f(\ubar{z})}\en\mathcal{H}(\mathbb{D})$. Como la inversión $\iota \colon z \mapsto\nicefrac{1}{z}$ es holomorfa en $\mathbb{C}^*$, se sigue que $g(z)$ es holomorfa por ser conjugación de $\ubar{f(\ubar{z})}$ con $\iota$. 
+
+Ahora bien, si tomamos $z\en\partial \mathbb{D}$, entonces $z = \ubar{z}^{-1}$, y como $f(z) \en \partial \mathbb{D}$ por hipótesis, también $f(z) = \ubar{f(z)}^{-1}$. Por lo tanto, 
+\[
+\forall z \en \partial \mathbb{D},\quad
+g(z) = \ubar{f(\nicefrac{1}{\ubar{z}})}^{-1} = \ubar{f(z)}^{-1} = f(z)
+\]
+Como $f$ y $g$ coinciden en la intersección de los dominios y esta intersección es cerrada, se sigue que se pueden pegar en una función continua $\hat{f} \colon \mathbb{C} \to \mathbb{C}$ que coincide con $f$ en $\ubar{\mathbb{D}}$ y coincide con $g$ en $\mathbb{C}\setminus \mathbb{D}$; en particular, $\hat{f} \en \mathcal{H}(\mathbb{C}\setminus\partial D)$.\vspace{1em}\\
+\emph{Veamos que $\hat{f}$ es entera}:\\
+Con este objetivo en mente, probaremos que la integral de $\hat{f}$ en cualquier triángulo es cero. Entonces fijemos un triángulo $T$ arbitrario. Como siempre podemos dividir a $T$ en triángulos semejantes arbitrariamente chicos (y la integral sobre el triángulo grande será la suma de aquella en los chicos), podemos suponer que $T$ es tan chico de modo que, sin importar su posición, solo pueda intersectar a $\partial\mathbb{D}$ en a lo sumo dos puntos y no pueda contener a $\mathbb{D}$ en su interior. Luego, hay 3 posibilidades:
+\begin{enumerate}[label=(\roman*), leftmargin=1.6em]
+\item $\card(T \cap \partial\mathbb{D}) = 0$: en este caso, como $T$ es chico, solo puede pasar $T\cup\inter  T \subseteq \mathbb{D}$ o $T\cup\inter  T \subseteq \mathbb{C}\setminus\ubar{\mathbb{D}}$. En cualquier caso, $T \cup \inter  T$ está en el dominio de una función holomorfa, así que el teorema de Cauchy garantiza $\int_T \hat{f}(z)\dd{z} = 0$.
+
+\item $\card(T \cap \partial\mathbb{D}) = 1$: en este caso, $\inter T \subseteq \mathbb{D}$ o $\inter T \subseteq \mathbb{C} \setminus \ubar{\mathbb{D}}$. En este caso, siempre podemos aproximar a $T$ por una sucesión de triángulos $T_n$ que cumpla, ya sea que $T_n \cup \inter T_n \subseteq \mathbb{D}$ para todo $n\en\mathbb{N}$, o que $T_n \cup \inter T_n \subseteq \mathbb{C} \setminus \ubar{\mathbb{D}}$ para todo $n\en\mathbb{N}$. En cualquier caso, tendremos por teo. de Cauchy que $\int_{T_n} \hat{f}(z) \dd{z} = 0$ para cada $n\en\mathbb{N}$, así que 
+\[
+\int_T \hat{f}(z) \dd{z} = \lim_{n\to\infty} \int_{T_n} \hat{f}(z) \dd{z} = 0
+\]
+
+\item $\card(T \cap \partial\mathbb{D}) = 2$: en este caso, o bien $\inter T \subseteq \mathbb{D}$ (es imposible que $\inter T \subseteq  \mathbb{C}\setminus\ubar{\mathbb{D}}$ en este caso), de modo que los puntos de intersección son dos vértices de $T$ y podemos aproximar por triángulos metidos en $\mathbb{D}$ cuya integral será cero por Cauchy (análogo a (ii)); o bien $\inter T$ intersecta a $\mathbb{D}$ y a $\mathbb{C}\setminus\ubar{\mathbb{D}}$ simultáneamente, en cuyo caso podemos aprovechar el segmento de circunferencia entre los puntos de intersección para separar el triángulo en dos curvas cerradas, $\gamma_1$ y $\gamma_2$, de modo que $\gamma_1 \subseteq \ubar{\mathbb{D}}$, $\gamma_2 \subseteq \mathbb{C}\setminus\mathbb{D}$ y $T = \gamma_1 + \gamma_2$. Repitiendo el argumento de aproximar a $\gamma_1$ mediante curvas en $\mathbb{D}$ y a $\gamma_2$ mediante curvas en $\mathbb{C}\setminus\ubar{\mathbb{D}}$, podemos concluir que $\int_{\gamma_1} \hat{f}(z) \dd{z} = 0$ y $\int_{\gamma_2} \hat{f} \dd{z} = 0$. Por lo tanto,
+\[
+\int_T \hat{f} \dd{z} = \int_{\gamma_1} \hat{f}(z) \dd{z} + \int_{\gamma_2} \hat{f}(z) \dd{z} = 0
+\]
+\end{enumerate}
+En cualquier caso, $\int_{T} \hat{f}(z) \dd{z}=0$, así que el teorema de Morera garantiza que $\hat{f}$ es entera.\vspace{1em}\\
+\emph{Acotemos a $\hat{f}$ y usemos teorema de Liouville}:\\
+Como $f$ es continua y $\ubar{\mathbb{D}}$ compacto, existen $M \coloneq \max_{\ubar{\mathbb{D}}} \abs{f}$ y $m \coloneq \min_{\ubar{\mathbb{D}}} \abs{f}$; más aún, como $f$ no se anula, $m > 0$ (ya que es un mínimo, i.e., lo alcanza en su dominio). Se sigue que:
+\[
+\forall z \en \ubar{\mathbb{D}}, \quad%
+\abs{f(z)} \leq M \quad\text{y}\quad \abs{f(z)^{-1}} \leq m^{-1}
+\]
+En particular, $\abs{g(z)} = \abs{\ubar{f(\nicefrac{1}{\ubar{z}})}^{-1}} = \abs{f(\nicefrac{1}{\ubar{z}})^{-1}} \leq m^{-1}$ para todo $z \en \mathbb{C}\setminus\mathbb{D}$.
+Esto implica que $f$ es acotada por $M$ y $g$ por $m^{-1}$, por lo que $\hat{f}$ es acotada por $\max\set{M,m^{-1}}$. Como ya vimos que $\hat{f}$ es entera, el teorema de Liouville implica que es constante. Finalmente, de esto se sigue que también $f = \hat{f}|_{\ubar{\mathbb{D}}}$ es constante.
+\vspace{1em}
+\hrule
+\subparagraph{Prueba alternativa:}
+Una forma más rápida es probar el principio de módulo máximo:
+\begin{lema}[Módulo máximo]\label{lema:max}
+Sea $g\en\mathcal{H}(\Omega)$ para un dominio $\Omega$. Si $|g|$ alcanza su máximo en $\Omega$, entonces $g$ es constante.
+\end{lema}
+\noindent\emph{Demostración de \cref{lema:max}}.
+Usaremos la notación $\int_\gamma h(z) \,\abs{\dd{z}} \equiv \int^b_a h(\gamma(t))\cdot\abs{\gamma'(t)} \dd{t}$. Como tomamos $|\gamma'(t)| > 0$, la integral $\int_\gamma{\cdot}\ \abs{\dd{z}}$ corresponde a una integral de Riemann-Stieltjes con función de densidad positiva, así que cumple las propiedades usuales de linealidad y monotonía (basta con heredarlas directamente de aquellas para $\int^b_a {\cdot}\,\dd{t}$). Más aún, la desigualdad del triángulo al sustituir la parametrización garantiza que $\abs\big{\int_\gamma h(z) \dd{z}} \leq \int_\gamma \abs{h(z)}\,\abs{\dd{z}}$, y también tenemos $\int_\gamma1\,\abs{\dd{z}} = \operatorname{long}(\gamma)$.\par
+Ahora bien, supongamos que existe $M = \max_{\Omega}\abs{g}$, y sea $C \coloneq \abs{g}^{-1}(\set{M}) \neq \varnothing$. Por un lado, la continuidad de $\abs{g}$ garantiza que $C$ es cerrado. Por otro lado, veamos que también es abierto: sea $z_0 \en C$ arbitrario, como $\Omega$ es abierto, existe $R>0$ con $D_R(z_0) \subseteq\Omega$. Si ahora fijamos $z\en D_R(z_0)$ entonces tendremos que $z\en C$. En efecto, como el caso $z = z_0$ es trivial, podemos suponer $z \neq z_0$ y poner $R > r \coloneq \abs{z - z_0} > 0$. La FIC garantiza que $f(z_0) = \frac{1}{2\pi}\int_{C_r(z_0)} \frac{f(w)}{w-z_0} \dd{w}$, por lo cual
+\[
+M 
+= \abs{f(z_0)}
+\leq \frac{1}{2\pi}\int_{C_r(z_0)} \abs{\frac{f(w)}{w-z_0}} \,\abs{\dd{w}}
+= \frac{1}{2\pi r}\int_{C_r(z_0)} \abs{f(w)} \,\abs{\dd{w}}
+\leq \frac{1}{2\pi r}\int_{C_r(z_0)} M \,\abs{\dd{w}} = M
+\]
+Esta cadena de desigualdades se convierte, entonces, en una de igualdades, así que
+\[
+\int_{C_r(z_0)} \abs{f(w)} \,\abs{\dd{w}}
+= \int_{C_r(z_0)} M \,\abs{\dd{w}}%
+\quad\implies\quad
+\int_{C_r(z_0)}( M -\abs{f(w)}) \,\abs{\dd{w}} = 0
+\]
+Como siempre tenemos $M - \abs{f(w)} \ge 0$, y $M -\abs{f(w)}$ es continua, forzosamente $M -\abs{f(w)} = 0$ para todo $w\en C_r(z_0)$; en particular, $M = \abs{f(z)}$. Esto prueba que $z \en C$, como $z\en D_R(z_0)$ fue arbitrario, hemos probado que $D_R(z_0) \subseteq C$, por lo que $C$ es abierto. Finalmente, $C$ es abierto, cerrado y no vacío, así que la conexidad de $\Omega$ garantiza que $\Omega = C = \abs{f}^{-1}(\set{M})$; en otras palabras, $\abs{f}$ es constante de valor $M$, así que un ejercicio de la primer tarea implica que $f$ es constante. Esto concluye la prueba.\vspace{1em}\\
+\emph{Ahora probemos el ejercicio}:\\
+Como $\ubar{\mathbb{D}}$ es compacto, existen $M = \max_{\ubar{\mathbb{D}}} \abs{f}$ y $m =\min_{\ubar{\mathbb{D}}} \abs{f}$. Además, gracias a que $f$ no se anula, por un lado $1/f \en \mathcal{H}({\mathbb{D}})$ y, por otro lado, $m > 0$, con lo cual $1/m = \max_{\ubar{\mathbb{D}}} \abs{1/f}$. No obstante, el \cref{lema:max} garantiza que $\abs{f}$ y $\abs{1/f}$ forzosamente alcanzan su máximo en la frontera $\partial\mathbb{D}$, pero por hipótesis, estos últimos valen exactamente $1$ en dicha frontera, con lo cual $M = 1 = 1/m = m$. De esto se sigue que $\abs{f}$ es constante de valor 1, así que $f$ es constante.
+\end{sol}

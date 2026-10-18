@@ -1,0 +1,45 @@
+\setcounter{eje}{18}
+\begin{ejer}
+Pruebe lo siguiente:
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em]
+\item La serie de potencias $\sum n z^n$ no converge en ningún punto del círculo unitario.
+\item La serie de potencias $\sum \nicefrac{z^n}{n^2}$ converge en todo punto del círculo unitario.
+\item La serie de potencias $\sum \nicefrac{z^n}{n}$ converge en todo punto del círculo unitario excepto en 1.
+\end{enumerate}
+\end{ejer}
+\begin{sol}
+Antes del ejercicio, probaré el siguiente lema:
+\begin{lema}[Criterio de Dirichlet]\label{lema:dirichtest}
+    Si $(a_n)^\infty_{n=1}$ es una sucesión monótona de números reales que converge a cero y $(b_n)^\infty_{n=1}$ es una sucesión de números complejos tal que $B_N = \sum^N_{n=1}b_n$ es acotada, entonces la serie $\sum^\infty_{n=1}a_nb_n$ converge.
+\begin{proof}
+    Supondré sin perder generalidad que $(a_n)_n$ es no decreciente.%
+    \footnote{
+    Si $a_n$ fuera no creciente, entonces $(-a_n)_n$ sería no decreciente, por lo que $\sum(-a_n)b_n = -\sum a_nb_n$ convergerá, con lo cual también $\sum a_nb_n$.
+    }
+    Por la fórmula de suma por partes se cumple, para cada $N\en\mathbb{N}$:
+    \begin{equation}\label{eq:sumpart}
+    \sum^N_{n=1}a_nb_n = a_NB_N - \sum^{N-1}_{n=1}(a_{n+1}-a_n)B_n
+    \end{equation}
+    Sea ahora $M>0$ tal que $|B_n| \leq M$ para cada $n\en\mathbb{N}$. Entonces, ya que $a_{n+1} \geq a_n$,
+    \[
+    \sum^{N-1}_{n=1} \abs{(a_{n+1} - a_n)B_n}%
+    = \sum^{N-1}_{n=1} (a_{n+1} - a_n)\abs{B_n}%
+    \leq \sum^{N-1}_{n=1} (a_{n+1} - a_n)M%
+    = (a_{N} - a_1)M
+    \]
+    Como $(a_N)_N$ converge, es acotada, así que también lo es $(a_N-a_1)M$, por lo que la igualdad anterior garantiza que también lo es $\sum^{N-1}_{n=1} \abs{(a_{n+1} - a_n)B_n}$; sin embargo, al ser una serie de términos no negativos, esto basta para garantizar su convergencia. Hemos probado que $\sum^{N-1}_{n=1}(a_{n+1}-a_n)B_n$ es absolutamente convergente, así que converge. Por otro lado, como $(a_N)_N$ converge a cero y $(B_N)_N$ es acotada, $(a_NB_N)_N$ también converge a cero. Finalmente, recordando (\ref{eq:sumpart}), $\sum^N_{n=1}a_nb_n$ convergerá por ser suma de sucesiones convergentes.
+\end{proof}
+\end{lema}
+\emph{Ahora resolvamos el ejercicio}:
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em]
+%--------------------------------------------------
+\item 
+Sea $z\en S^1$. Como $\abs{nz^n} = n|z|^n = n$ diverge propiamente a $\infty$, $\sum nz^n$ no puede converger, pues es bien sabido que si $\sum a_n$ converge entonces $a_n \to 0$.
+%--------------------------------------------------
+\item 
+Sea $z\en S^1$. Como $\sum \abs{\nicefrac{z^n}{n^2}} = \sum\nicefrac{1}{n^2}$ converge, se sigue que $\sum \nicefrac{z^n}{n^2}$ es absolutamente convergente; en particular, $\sum \nicefrac{z^n}{n^2}$ converge.
+%--------------------------------------------------
+\item 
+Por un lado, $\sum\nicefrac{1}{n}$ diverge, así que $\sum \nicefrac{z^n}{n}$ diverge cuando $z=1$. Por otro lado, si $z\en S^1\setminus\set{1}$, entonces $\abs{\sum^N_{n=1}z^n} = \abs{\frac{z^{N+1} - z}{z-1}} \leq \frac{2}{\abs{z-1}}$. Esto prueba que $\sum z^n$ es acotada; además, $\nicefrac{1}{n}$ es monótona y converge a cero, por lo tanto, el \myref{lema:dirichtest} garantiza que la serie $\sum \nicefrac{z^n}{n}$ converge.\qedhere
+\end{enumerate}
+\end{sol}

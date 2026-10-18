@@ -1,0 +1,17 @@
+\setcounter{eje}{11}
+\begin{ejer}
+Considere la función definida por
+\[ 
+f(x+ iy) = \sqrt{|x||y|}, \quad \text{siempre que } x, y \en \mathbb{R}. 
+\]
+Muestre que $f$ satisface las ecuaciones de Cauchy-Riemann en el origen, pero que $f$ no es $\mathbb{C}$-derivable en cero.
+\end{ejer}
+\begin{sol}
+Como $f(x+i0) = 0$, se tiene $\partial_xf(0) = 0$; además, como $f(0+iy) = 0$, se cumple $\partial_yf(0)=0$. Esto implica que $\partial_xf(0) = 0 = \frac{1}{i}\partial_yf(0)$, es decir, $f$ satisface trivialmente las ecuaciones de Cauchy-Riemann en el origen.\par
+No obstante, veamos que $f$ no es $\mathbb{C}$-derivable en cero:
+en efecto, por un lado, ya teníamos que $\partial_xf(0) = 0$, así que, en caso de existir la derivada, tendría que ser $f'(0) = \partial_xf(0) = 0$; sin embargo, al tomar límite del cociente diferencial sobre la trayectoria $x=y$
+\[
+\lim_{h\to0^+} \frac{f(h+ih)- f(0+i0)}{h+ih} = \frac{\sqrt{h^2}}{h(1+i)} = \frac{h}{h(1+i)} = \frac{1}{1+i} \neq 0
+\]
+como el límite en la trayectoria $x=y$ es distinto de $0$, $f$ no puede ser $\mathbb{C}$-derivable en $0$.
+\end{sol}

@@ -1,0 +1,40 @@
+\setcounter{eje}{11}
+\begin{ejer}[b]
+Deduzca de los ejercicios 11 y 12(a) la fórmula de representación integral de Poisson a partir de la fórmula integral de Cauchy: Si $u$ es armónica en el disco unitario y continua en su clausura, entonces si $z = re^{i\theta}$ se tiene
+\[ u(z) = \frac{1}{2\pi} \int_0^{2\pi} P_r(\theta - \varphi) u(e^{i\varphi}) \dd{\varphi}\]
+donde $P_r(\gamma)$ es el núcleo de Poisson para el disco unitario dado por
+\[ P_r(\gamma) = \frac{1-r^2}{1-2r\cos\gamma + r^2}. \]
+\end{ejer}
+\begin{sol}
+Como $u$ es armónica en $\mathbb{D}$, 12(a) garantiza que existe $f\en\mathcal{H}(\mathbb{D})$ con $u = \Re(f)$. Ahora fijemos $z\en \mathbb{D}$ con $z=re^{i\theta}$ para $0\le r < 1$ y $\theta\en[0,2\pi)$. Luego, 11(a) dice que para todo $R\en(r,1)$:%
+\footnote{
+    Notemos que no podemos aplicar el resultado con $R=1$ ya que no tenemos a $f$ definida continuamente sobre $\partial \mathbb{D}$, mucho menos de manera holomorfa en algún abierto que contenga a $\ubar{\mathbb{D}}$.
+}
+\[
+f(z)
+= \frac{1}{2\pi} \int^{2\pi}_0 f(Re^{i\varphi}) \cdot \Re\biggl(\frac{Re^{i\varphi} + z}{Re^{i\varphi} - z}\biggr) \,\dd{\varphi}
+\]
+Tomando parte real de esto se sigue
+\begin{equation}\label{eq:poiss}
+u(z)
+= \frac{1}{2\pi} \int^{2\pi}_0 u(Re^{i\varphi}) \cdot \Re\biggl(\frac{Re^{i\varphi} + z}{Re^{i\varphi} - z}\biggr) \,\dd{\varphi}
+\end{equation}
+Como $u$ es continua en $\ubar{\mathbb{D}}$ y este último es compacto, $u$ es uniformemente continua, además $\lim_{R\to 1} Re^{i\varphi} = e^{i\varphi}$ uniformemente, por lo tanto $\lim_{R\to 1} u(Re^{i\varphi}) = u(e^{i\varphi})$ uniformemente. Del mismo modo, la continuidad uniforme de $\Re\bigl(\frac{w+z}{w-z}\bigr)$ en un compacto $\set{w \given r+\varepsilon \leq \abs{w} \leq 1}$ garantiza que $\lim_{R\to 1} \Re\bigl(\frac{Re^{i\varphi} + z}{Re^{i\varphi} - z}\bigr) = \Re\bigl(\frac{e^{i\varphi} + z}{e^{i\varphi} - z}\bigr)$ uniformemente. Estas convergencias uniformes nos permiten conmutar la integral con el límite, al tomar límite en (\ref{eq:poiss}):
+\begin{align*}
+u(z)
+&= \lim_{R \to 1}\frac{1}{2\pi} \int^{2\pi}_0 u(Re^{i\varphi}) \cdot \Re\biggl(\frac{Re^{i\varphi} + z}{Re^{i\varphi} - z}\biggr) \,\dd{\varphi}\\
+&= \frac{1}{2\pi} \int^{2\pi}_0 u(e^{i\varphi}) \cdot \Re\biggl(\frac{e^{i\varphi} + z}{e^{i\varphi} - z}\biggr) \,\dd{\varphi}
+\end{align*}
+Sin embargo, $\frac{e^{i\varphi} + z}{e^{i\varphi} - z} = \frac{e^{i\varphi} + re^{i\theta}}{e^{i\varphi} - re^{i\theta}} = \frac{e^{i(\varphi-\theta)} + r}{e^{i(\varphi-\theta)} - r}$, así que 
+\[
+\Re\biggl( \frac{e^{i\varphi} + z}{e^{i\varphi} - z} \biggr) 
+= \Re\biggl( \frac{e^{i(\varphi-\theta)} + r}{e^{i(\varphi-\theta)} - r} \biggr) 
+= \Re\biggl( \ubar{ \frac{e^{i(\varphi-\theta)} + r}{e^{i(\varphi-\theta)} - r} } \biggr)
+= \Re\biggl( \frac{e^{i(\theta - \varphi)} + r}{e^{i(\theta-\varphi)} - r} \biggr) 
+\]
+pero el ejercicio 11(b) implica $\Re\bigl( \frac{e^{i(\theta - \varphi)} + r}{e^{i(\theta-\varphi)} - r} \bigr) = \frac{1-r^2}{1-2r\cos(\theta-\varphi) + r^2} = P_r(\theta-\varphi)$. Por lo tanto
+\[
+u(z) =
+\frac{1}{2\pi} \int^{2\pi}_0 u(e^{i\varphi}) P_r(\theta-\varphi) \,\dd{\varphi}
+\]
+\end{sol}

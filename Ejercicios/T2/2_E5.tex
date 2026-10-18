@@ -1,0 +1,28 @@
+\setcounter{eje}{4}
+\begin{ejer}
+Suponga que $f$ es continuamente $\mathbb{C}$-diferenciable en $\Omega$, y $T \subseteq \Omega$ es un triángulo cuyo interior también está contenido en $\Omega$. Aplique el teorema de Green para mostrar que
+\[ \int_T f(z) \dd{z} = 0. \]
+Esto proporciona una demostración del teorema de Goursat bajo la suposición adicional de que $f'$ es continua.
+\end{ejer}
+\begin{sol}
+Para este ejercicio identificaremos a $\mathbb{C}$ con $\mathbb{R}^2$. Pongamos $f=u+iv=(u,v)$, con $u,v\colon\Omega \to \mathbb{R}$; en particular, $u,v\en C^1(\Omega)$ gracias a que $f$ es continuamente $\mathbb{C}$-derivable. También supongamos que $(x,y) = x+iy$ es parametrización orientada positiva de $T$, con $x,y\colon I \to \mathbb{R}$. Así
+\[
+\int_T f(z) \dd{z}
+\;=\; \int_I (u(t)+iv(t))\cdot(x'(t)+iy'(t)) \dd{t}
+\]
+Distribuyendo y separando partes real e imaginaria:
+\begin{align*}
+\int_T f(z) \dd{z}
+&\;=\; \int_T u(t)x'(t) - v(t)y'(t) \dd{t}  \;+\;  i\int_T v(t)x'(t) + u(t)y'(t) \dd{t}\\
+&\;=\; \int_T u\dd{x} - v\dd{y}  \;+\;  i\int_T v\dd{x} + u\dd{y}
+\end{align*}
+Pero por teorema de Green $\int_T M\dd{x} + N\dd{y} = \iint_{\inter T} \partial_x N- \partial_y M \dd{A}$ para todos $M,N\en C^1(\Omega)$, luego:
+\begin{align*}
+\int_T f(z) \dd{z}
+&\;=\; \iint_{\inter T\hspace{-0.8em}} {-\partial_xv - \partial_yu} \,\dd{A}  \;+\;  i \iint_{\inter T\hspace{-0.8em}} {\partial_xu - \partial_yv} \,\dd{A}
+\end{align*}
+Sin embargo, por las ecuaciones de (CR) sabemos que ${-\partial_xv - \partial_yu} = {\partial_xu - \partial_yv} = 0$, por lo tanto:
+\[
+\int_T f(z) \dd{z} = 0
+\]
+\end{sol}

@@ -1,0 +1,47 @@
+\setcounter{eje}{12}
+\begin{ejer}
+Suponga que $f$ es holomorfa en un dominio $\Omega$. Pruebe que en los siguientes casos:
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em]
+    \item $\Re(f)$ es constante;
+    \item $\Im(f)$ es constante;
+    \item $|f|$ es constante;
+\end{enumerate}
+se puede concluir que $f$ es constante.
+\end{ejer}
+\begin{sol}
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em]
+%--------------------------------------------------
+\item 
+Si $\Re(f)$ es constante entonces $\partial_x\Re(f) = \partial_y\Re(f) = 0$, así que (CR) implica
+\[
+\partial_y\Im(f) = \partial_x\Re(f) = 0%
+\quad\text{y}\quad%
+\partial_x\Im(f) = -\partial_y\Re(f) = 0
+\]
+En particular, para todo $z\en\Omega$, $f'(z) = \partial_xf(z) = \partial_x\Re(f)(z) + i\partial_x\Im(f)(z) = 0$. Como $\Omega$ es un dominio, se sigue que $f$ es constante.
+%---------------------------------------------------
+\item 
+Como $f$ es holomorfa, también lo es $if$; sin embargo, $\Re(if) = -\Im(f)$ y $\Im(f)$ es constante por hipótesis. Se sigue, por lo visto en (a), que $if$ es constante. Por lo tanto $f$ es constante.
+%---------------------------------------------------
+\item 
+Si $|f| = 0$ es constante entonces $f=0$ es constante. Ahora supongamos $|f| > 0$. Escribamos $u \coloneqq \Re(f)$ y $v\coloneq \Im(f)$: como $|f|$ es constante, también lo es $|f|^2 = u^2 + v^2$, así que sus parciales son cero:
+\[
+2u{\partial_xu} + 2v\partial_xv = \partial_x|f|^2 = 0
+\quad\text{y}\quad
+2u{\partial_yu} + 2v\partial_yv = \partial_y|f|^2 = 0
+\]
+es decir,
+\begin{equation}\label{eq:lin}
+u\partial_xu + v\partial_xv=0= u\partial_yu+v\partial_yv
+\end{equation}
+Gracias a (CR) se cumple $\partial_xv = -\partial_yu$ y $\partial_yv = \partial_xu$, por lo que (\ref{eq:lin}) se convierte en
+\begin{equation}\label{eq:lin2}
+u\partial_xu - v\partial_yu = 0 = u\partial_yu+v\partial_xu
+\end{equation}
+No obstante, $f\cdot(\partial_xu + i \partial_yu) = (u+iv)(\partial_xu + i \partial_yu) = (u\partial_xu - v\partial_yu) + i(u\partial_yu+v\partial_xu)$, así que (\ref{eq:lin2}) garantiza que $f\cdot(\partial_xu + i \partial_yu) = 0$. Como $f$ nunca se anula ya que $|f|>0$, se sigue que $\partial_xu + i \partial_yu = 0$, es decir, $\partial_xu = 0 = \partial_yu$. Como $\partial_xv = -\partial_yu = 0$, se sigue
+\[
+f' = \partial_xf = \partial_xu + i\partial_xv = 0
+\]
+Finalmente, gracias a que $\Omega$ es dominio, esto implica que $f$ constante.
+\end{enumerate}
+\end{sol}

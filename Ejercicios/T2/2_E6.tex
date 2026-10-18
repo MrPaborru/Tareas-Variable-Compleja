@@ -1,0 +1,48 @@
+\setcounter{eje}{5}
+\begin{ejer}
+Sea $\Omega$ un subconjunto abierto de $\mathbb{C}$ y sea $T \subseteq \Omega$ un triángulo cuyo interior también está contenido en $\Omega$. Suponga que $f$ es una función holomorfa en $\Omega$ excepto posiblemente en un punto $w$ dentro de $T$. Pruebe que si $f$ es acotada cerca de $w$, entonces
+\[ \int_T f(z) \dd{z} = 0. \]
+\end{ejer}
+\begin{sol}
+Sea $D$ un disco tal que $\ubar{D} \subseteq \inter T$ y $f$ es acotada en $D$. Definimos $g \colon D \to \mathbb{C}$ tal que 
+\[
+g(z) \coloneq%
+\begin{cases}
+    (z-w)^2f(z), &\text{si } z \neq w.\\
+    0,           &\text{si } z = w.
+\end{cases}
+\]
+$g$ es holomorfa en $D^* \coloneq D \setminus\set{w}$ por ser producto de funciones holomorfas. Además, si $z\en D^*$:
+\[
+\frac{g(z)- g(w)}{z-w}
+= \frac{(z-w)^2(f(z) - f(w))}{z-w}
+=(z-w)(f(z)-f(w))
+\]
+Como $f$ es acotada en $D$, $f(z)-f(w)$ es acotada para $z\en D^*$, pero $\lim_{z\to w}(z-w) = 0$, así que
+\[
+\lim_{z\to w}\frac{g(z)- g(w)}{z-w} = 0
+\]
+Esto prueba que $g\en\mathcal{H}(D)$ y $g'(w) = 0$.\par
+Ahora bien, esto implica que $g$ tiene una serie de Taylor en $D$ alrededor de $w$; más aún, como $g(w) = g'(w) = 0$, los primeros dos coeficientes son $a_0 = a_1 = 0$, por lo que
+\[
+\forall z \en D,\quad
+g(z) = \sum^\infty_{n=2} a_n(z-w)^n
+\]
+Sin embargo, $f(z) = g(z)(z-w)^{-2}$ para todo $z\en D^*$, de donde
+\[
+\forall z\en D^*,\quad
+f(z) = \sum^\infty_{n=0} a_{n+2}(z-w)^n
+\]
+Por lo tanto, podemos definir $\hat{f} \colon \Omega \to \mathbb{C}$ de tal modo que
+\[
+\hat{f}(z) =%
+\begin{cases}
+    f(z), &\text{si } z \neq w.\\
+    a_2,  &\text{si } z=w.
+\end{cases}
+\]
+Se sigue que $\hat{f}(z) = \sum^\infty_{n=0} a_{n+2}(z-w)^n$ para $z\en D$, por lo que $\hat{f}$ es holomorfa en $D$, además, es holomorfa en el resto de $\Omega$ por ser igual a $f$. Esto implica, por teo. de Goursat, que $\int_T \hat{f}(z) \dd{z} = 0$. Finalmente, gracias a que $f$ coincide con $\hat{f}$ en $T$:
+\[
+\int_T f(z) \dd{z} = \int_T \hat{f}(z) \dd{z} = 0
+\]
+\end{sol}

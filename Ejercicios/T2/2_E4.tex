@@ -1,0 +1,43 @@
+\setcounter{eje}{3}
+\begin{ejer}
+Pruebe que para todo $\xi \en \mathbb{C}$ tenemos
+\( e^{-\pi\xi^2} = \int_{-\infty}^{\infty} e^{-\pi x^2} e^{2\pi i x \xi} \dd{x} \).
+\end{ejer}
+\begin{sol}
+Sabemos que $e^{-\pi\xi^2}$ es entera (es composición de funciones enteras). Definimos 
+\[
+F(z,x) = e^{-\pi x^2} e^{2\pi i x z},
+\]
+que es entera en $z$ para cada $x\en\mathbb{R}$ fijo y es continua en $\mathbb{C} \times \mathbb{R}$. En particular, dado un $n\en\mathbb{N}$, la función $F(z,x)$ es entera en $z$ y continua en $\mathbb{C}\times[-n,n]$, así que el teorema 5.4 de \cite{stein} garantiza que la función
+\[
+f_n(z) = \int_{-n}^{n} e^{-\pi x^2} e^{2\pi i x z} \dd{x}.
+\]
+es entera para cada $n\en\mathbb{N}$.%
+\footnote{
+    Notemos que el teorema aplica para integrales en intervalos compactos, por eso no podemos usarlo directamente para la integral impropia. En algunos casos la integral podría no existir siquiera.
+}\par
+Ahora veamos que $\{f_n\}_n$ converge uniformemente en compactos. Sea $K\subseteq\mathbb{C}$ un compacto, y tomemos un $M>0$ que acote en módulo a los elementos de $K$. Luego, para cada $m > n$, tenemos
+\[
+\abs{f_m(z) - f_n(z)}  \le \int_{n \le |x| \le m} \abs{e^{-\pi x^2} e^{2\pi i x z}} \dd{x} = \int_{n \le |x| \le m} e^{-\pi x^2} e^{-2\pi x \Im(z)} \dd{x}.
+\]
+Como $|\Im(z)| \le M$ para todo $z \en K$, entonces $e^{-2\pi x \Im(z)} \leq e^{2\pi\abs{x} \abs{\Im(z)}} \leq e^{2\pi |x| M}$, así
+\[
+\abs{f_m(z) - f_n(z)} \le \int_{n \le |x| \le m} e^{-\pi x^2} e^{2\pi |x| M} \dd{x}.
+\]
+Para $|x|$ suficientemente grande, digamos $|x| \ge N$, tenemos
+\[
+-\pi x^2 + 2\pi M|x| \le -\frac{\pi}{2} x^2.
+\]
+Por tanto, para $n \ge N$ y todo $z \en K$,
+\[
+\abs{f_m(z) - f_n(z)}  \le \int_{n \le |x| \le m} e^{-\frac{\pi}{2} x^2} \dd{x} \le \int_{|x| \ge n} e^{-\frac{\pi}{2} x^2} \dd{x}.
+\]
+
+La última integral tiende a $0$ cuando $n \to \infty$, independientemente de $z \en K$ y $m > n$, así que $\{f_n\}_n$ es uniformemente de Cauchy en $K$. Luego, la completez de $\mathbb{C}$ garantiza que converge uniformemente en $K$ a una función
+\[
+f(z) = \lim_{n\to\infty} f_n(z) = \int_{-\infty}^{\infty} e^{-\pi x^2} e^{2\pi i x z} \dd{x}.
+\]
+Como la convergencia es uniforme en un compacto $K \subseteq \mathbb{C}$ arbitrario, el teorema 5.2 (\cite{stein}) garantiza que $f(z)$ es entera. 
+
+Finalmente, como sabemos que $e^{-\pi\xi^2} = \int_{-\infty}^{\infty} e^{-\pi x^2} e^{-2\pi i x \xi} \dd{x}$ para todo $\xi\en\mathbb{R}$ (ejemplo 1, \S 2 de \cite{stein}), tomando $z = -\xi$ obtenemos que las funciones enteras $e^{-\pi z^2}$ y $f(z)$ coinciden en $\mathbb{R}$. Se sigue que $e^{-\pi z^2}=f(z)$ para todo $z\en\mathbb{C}$.
+\end{sol}

@@ -1,0 +1,108 @@
+\setcounter{eje}{24}
+\begin{ejer}
+Los siguientes tres cálculos proporcionan una idea sobre el teorema de Cauchy, el cual trataremos en el próximo capítulo.
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em]
+\item Evalúe las integrales $\int_\gamma z^n \dd{z}$ para todos los enteros $n$. Aquí $\gamma$ es cualquier círculo centrado en el origen con orientación positiva (antihoraria).
+\item La misma pregunta que antes, pero con $\gamma$ cualquier círculo que no contenga el origen.
+\item Muestre que si $|a| < r < |b|,$ entonces
+\[ 
+\int_\gamma \frac{1}{(z-a)(z-b)} \dd{z} = \frac{2\pi i}{a-b}, 
+\]
+donde $\gamma$ denota el círculo centrado en el origen, de radio $r,$ con orientación positiva.
+\end{enumerate}
+\end{ejer}
+\begin{sol}
+\begin{enumerate}[label=(\alph*), leftmargin=1.8em]
+%-------------------------------------------------
+\item 
+Si $n \neq -1$ entonces $f(z) = z^n$ tiene anti-derivada en $\mathbb{C}\setminus\set0$, ya que $F(z) = \frac{1}{n+1}z^{n+1}$ cumple que $F'(z) = f(z)$. Esto garantiza que $\int_\gamma f(z) \dd{z} = 0$.\par
+Por otro lado, para el caso $n=-1$: sea $\gamma$ es un círculo de radio $R>0$, es decir, se puede parametrizar como $\gamma(t) = Re^{it}$ con $t\en[0,2\pi]$. Luego,
+\[
+\int_\gamma \frac{\dd{z}}{z}  
+= \int^{2\pi}_0 \frac{\gamma'(t)}{\gamma(t)} \dd{t} 
+= \int^{2\pi}_0 \frac{iRe^{it}}{Re^{it}} \dd{t} 
+= i\int^{2\pi}_0 \dd{t} = 2\pi i
+\]
+%------------------------------------------------
+\item 
+Si $n \neq -1$ ya vimos que $z^n$ tiene anti-derivada en $\mathbb{C}\setminus\set0$, así $\int_\gamma f(z) \dd{z}$.\par
+Para el caso $n=-1$: sea $\gamma$ un círculo con centro en $C\en\mathbb{C}$ con radio $R > 0$, de modo que $\abs{C} \neq R$ (de este modo, $\gamma$ no toca al origen). Podemos parametrizar a este círculo mediante $\gamma(t) = C + Re^{it}$ con $t\en[0,2\pi]$. Luego
+\begin{equation}\label{eq:int}
+\int_\gamma \frac{\dd{z}}{z}
+= \int^{2\pi}_0 \frac{\gamma'(t)}{\gamma(t)} \dd{t}
+= \int^{2\pi}_0 \frac{iRe^{it}}{C+Re^{it}} \dd{t}
+\end{equation}
+Ahora analicemos las dos posibilidades:
+\begin{itemize}[leftmargin=1em]
+    \item Si $\abs{C} > R$ entonces $\alpha \coloneq R/C$ cumple $\abs{\alpha} < 1$. Dividiendo (\ref{eq:int}) entre $C \neq 0$ se obtiene
+    \[
+    \int_\gamma \frac{\dd{z}}{z}
+    = \int^{2\pi}_0 \frac{i\alpha e^{it}}{1+\alpha e^{it}} \dd{t}
+    \]
+    Como $|\alpha e^{it}| = |\alpha| < 1$, sabemos que $\frac{1}{1+\alpha e^{it}} = \sum^\infty_{n=0} (-\alpha e^{it})^n = \sum^\infty_{n=0}(-\alpha)^n e^{nit}$; luego,
+    \[
+    \int^{2\pi}_0 \frac{i\alpha e^{it}}{1+\alpha e^{it}} \dd{t}
+    = i\int^{2\pi}_0 \alpha e^{it}\sum^{\infty}_{n=0}(-\alpha)^n e^{nit} \dd{t}
+    = -i\int^{2\pi}_0 \sum^{\infty}_{n=0}(-\alpha)^{n+1} e^{(n+1)it} \dd{t}
+    \]
+    Como $\sum z^{n+1}$ tiene radio de convergencia igual a $1$ y $\abs{-\alpha e^{it}} = \abs{\alpha} < 1$, esta serie converge uniformemente en el compacto $\set{z \given |z| = |\alpha|}$, así que, al pre-componer $\sum z^{n+1}$ con $-\alpha e^{it}$, obtenemos que $\sum (-\alpha)^{n+1}e^{(n+1)it}$ converge uniformemente. Esta convergencia uniforme en variable real nos permite conmutar la integral con la serie:
+    \begin{align*}
+    i \int^{2\pi}_0 \sum^{\infty}_{n=0}(-\alpha)^{n+1}e^{(n+1)it} \dd{t}
+    &= i \sum^{\infty}_{n=0} \int^{2\pi}_0(-\alpha)^{n+1}e^{(n+1)it} \dd{t}\\
+    &= i \sum^{\infty}_{n=0} (-\alpha)^{n+1}\int^{2\pi}_0e^{(n+1)it} \dd{t}\\
+    &= i \sum^{\infty}_{n=0} (-\alpha)^{n+1}\biggl( \frac{e^{2(n+1)\pi i}}{(n+1)i} - \frac{e^{0(n+1)i}}{(n+1)i} \biggr)\\
+    &= i \sum^{\infty}_{n=0} \frac{(-\alpha)^{n+1}}{(n+1)i}(1-1) = 0
+    \end{align*}
+    Queda demostrado que $\int_\gamma\frac{\dd{z}}{z} = 0$.
+
+    \item Si $\abs{C} < R$ entonces $\alpha \coloneq C/R$ satisface $\abs{\alpha} < 1$. Dividiendo (\ref{eq:int}) entre $Re^{it} \neq 0$ obtenemos:
+    \[
+    \int_\gamma \frac{\dd{z}}{z}
+    = \int^{2\pi}_0 \frac{i}{\alpha e^{-it} + 1} \dd{t}
+    = i\int^{2\pi}_0 \frac{1}{1 + \alpha e^{-it}} \dd{t}
+    \]
+    Como $\abs{\alpha e^{-it}} = \abs{\alpha} < 1$ entonces, como ya vimos antes, $\frac{1}{1 + \alpha e^{-it}} = \sum^\infty_{n=0}(-\alpha)^ne^{-nit}$ uniformemente, por lo que podemos conmutar integral con serie (en variable real):
+    \begin{align*}
+    i\int^{2\pi}_0 \frac{1}{1 + \alpha e^{-it}} \dd{t}
+    &= i\int^{2\pi}_0 \sum^\infty_{n=0}(-\alpha)^ne^{-nit} \dd{t}\\
+    &= i \sum^\infty_{n=0}\int^{2\pi}_0(-\alpha)^ne^{-nit} \dd{t}\\
+    &= i \sum^\infty_{n=0}(-\alpha)^n\int^{2\pi}_0e^{-nit} \dd{t}\\
+    &= i\int^{2\pi}_0\dd{t} \;+\; i \sum^\infty_{n=1}(-\alpha)^n\int^{2\pi}_0e^{-nit} \dd{t} \\
+    &= 2\pi i \;+\; i \sum^\infty_{n=0}(-\alpha)^n \biggl( \frac{e^{-2n\pi i}}{-ni} - \frac{e^{-0ni}}{-ni} \biggr)\\
+    &= 2\pi i \;+\; \underbrace{ i \sum^\infty_{n=0} \frac{(-\alpha)^n}{-ni} (1-1) }_{=0} = 2\pi i
+    \end{align*}
+    Esto prueba que $\int_\gamma\frac{\dd{z}}{z} = 2\pi i$.
+\end{itemize}
+%------------------------------------------------
+\item 
+Mediante el método de fracciones parciales obtenemos la expresión
+\[
+\frac{1}{(z-a)(z-b)} 
+= \frac{1}{(a-b)}\biggl(\frac{1}{z-a} - \frac{1}{z-b}\biggr)
+\]
+por lo que la linealidad de la integral implica
+\begin{equation}\label{eq:int2}
+\int_\gamma \frac{\dd{z}}{(z-a)(z-b)} 
+= \frac{1}{(a-b)}\biggl(\int_\gamma\frac{\dd{z}}{z-a} - \int_\gamma\frac{\dd{z}}{z-b}\biggr)
+\end{equation}
+El teorema de cambio de variable garantiza que
+\[
+\int_\gamma\frac{\dd{z}}{z-a}
+=\int_{\gamma-a} \frac{\dd{z}}{z}
+\quad\text{y}\quad
+\int_\gamma\frac{\dd{z}}{z-b}
+=\int_{\gamma-b} \frac{\dd{z}}{z}
+\]
+como $\gamma -a$ y $\gamma-b$ son un círculos de radio $r$ con centros en $-a$ y $-b$, respectivamente, y tales que $\abs{-a} < r < \abs{-b}$, entonces lo visto en el inciso (b) implica que 
+\[
+\int_{\gamma-a} \frac{\dd{z}}{z} = 2\pi i
+\quad\text{y}\quad
+\int_{\gamma-b} \frac{\dd{z}}{z} = 0
+\]
+Sustituyendo en (\ref{eq:int2}) obtenemos:
+\[
+\int_\gamma \frac{\dd{z}}{(z-a)(z-b)} 
+= \frac{2\pi i}{a-b}
+\]
+\end{enumerate}
+\end{sol}
