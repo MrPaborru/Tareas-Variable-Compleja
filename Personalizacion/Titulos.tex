@@ -99,7 +99,8 @@
         \begingroup
         \setlength{\fboxsep}{4pt}%
         \colorbox{rojoCIMAT}{%
-            \makebox[\chapterboxwidth][c]{%
+            % El ancho original es el mínimo; crece con el número.
+            \makebox[\maxof{\chapterboxwidth}{\width}][c]{%
                 \resizebox{!}{5.6cm}{%
                     \normalfont
                     \bfseries

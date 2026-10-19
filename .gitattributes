@@ -1,0 +1,3 @@
+# Texto con finales de línea normalizados; PDF como archivo binario.
+* text=auto
+*.pdf binary
